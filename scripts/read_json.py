@@ -19,7 +19,7 @@ def fetch_versions_from_api(document_id):
     Fetch all versions for a given Onshape document and workspace using the API.
     Returns JSON as a Python object.
     """
-    API_KEY = read_key("onshape-api-acces.txt")
+    API_KEY = read_key("onshape-api-access.txt")
     API_SECRET = read_key("onshape-api-secret.txt")
 
     # Example endpoint (adjust to real Onshape API docs):
@@ -84,12 +84,13 @@ def get_latest_valid_log():
 # MAIN ORCHESTRATION
 # -----------------------------
 if __name__ == "__main__":
-    DOCUMENT_ID = "your_document_id_here"
+    DOCUMENT_ID = "c7d8e47c243d8bf4bb749415"
 
     # Step 1: Try to fetch & archive
-    OFFLINE_MODE = True  # set to True to skip API fetch while developing
+    OFFLINE_MODE = False  # set to True to skip API fetch while developing
 
     if not OFFLINE_MODE:
+        print("Attempting API fetch from Onshape…")
         log_written = fetch_and_archive_versions(DOCUMENT_ID)
 
         if log_written:
