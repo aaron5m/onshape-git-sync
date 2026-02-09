@@ -1,0 +1,27 @@
+{
+  "metadataWorkspaceId": null,
+  "purpose": 0,
+  "parent": "",
+  "type": "version",
+  "creator": {
+    "jsonType": "user-summary",
+    "state": 1,
+    "isOnshapeSupport": false,
+    "image": "https://cad.onshape.com/api/profile/1fa0b9454d29cb85b8355c32a15d98f1a4d2968c0ba2e0c8e3d22b87f7c5d70f.png",
+    "name": "P Aaron Mitchell",
+    "id": "6989543a9b84c0683fec9d7c",
+    "href": "https://cad.onshape.com/api/v10/users/6989543a9b84c0683fec9d7c"
+  },
+  "lastModifier": null,
+  "description": "",
+  "modifiedAt": "2026-02-09T04:01:40.394+00:00",
+  "thumbnail": null,
+  "documentId": "c7d8e47c243d8bf4bb749415",
+  "createdAt": "2026-02-09T04:01:40.394+00:00",
+  "microversion": "a80551c5db23240d65d9a3d8",
+  "parents": null,
+  "overrideDate": null,
+  "name": "Start",
+  "id": "18b014dc98aa7cf5ce0e94f2",
+  "href": null
+}

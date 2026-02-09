@@ -1,7 +1,15 @@
+import os
+import json
 from pathlib import Path
 from utils import *
 from datetime import datetime
 import requests
+
+# CONFIGURATION
+LOG_DIR = Path(__file__).resolve().parent.parent / "logs"
+SNAPSHOT_DIR = Path(__file__).resolve().parent.parent / "snapshots"
+DOCUMENT_ID = "c7d8e47c243d8bf4bb749415"
+OFFLINE_MODE = True
 
 # -----------------------------
 # Step 0: Read API keys
@@ -35,9 +43,7 @@ def fetch_versions_from_api(document_id):
 # Step 1b: Use Fetch to Archive
 # -----------------------------
 def fetch_and_archive_versions(document_id):
-    LOG_DIR = Path(__file__).resolve().parent.parent / "logs"
     LOG_DIR.mkdir(exist_ok=True)
-
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
     try:
@@ -81,13 +87,56 @@ def get_latest_valid_log():
     return valid_logs[-1]
 
 # -----------------------------
+# Step 3: Archive with snapshot of each version by its timestamp
+# -----------------------------
+def archive_versions_to_local_snapshots(all_versions):
+    """
+    For each version in all_versions:
+      - Create a timestamped folder based on current time
+      - If folder already exists, skip (idempotent)
+      - Save snapshot.json inside the folder with the full version data
+    """
+    os.makedirs(SNAPSHOT_DIR, exist_ok=True)
+
+    for version in all_versions:
+    
+        # Extract Onshape's version creation timestamp
+        created_at = version.get("createdAt")
+        if not created_at:
+            print(f"Warning: version {version.get('name')} missing 'createdAt'; skipping")
+            continue
+
+        # Convert ISO 8601 timestamp to folder-friendly format
+        try:
+            dt = datetime.fromisoformat(created_at.replace("Z", "+00:00"))  # handle UTC Z
+            timestamp_folder_name = dt.strftime("%Y%m%d_%H%M%S")
+        except Exception as e:
+            print(f"Error parsing timestamp for version {version.get('name')}: {e}")
+            continue
+            
+        # Build folder path
+        version_folder = os.path.join(SNAPSHOT_DIR, timestamp_folder_name)
+        
+        # Skip if folder already exists
+        if not os.path.exists(version_folder):
+            os.makedirs(version_folder, exist_ok=True)
+
+            snapshot_file = os.path.join(version_folder, "snapshot.json")
+            with open(snapshot_file, "w") as f:
+                json.dump(version, f, indent=2)
+            
+            print(f"Archived in {timestamp_folder_name} snapshot for version: {version.get('name')}")
+        else:
+            print(f"Snapshot {timestamp_folder_name} already exists as version: {version.get('name')}")
+            pass
+
+
+# -----------------------------
 # MAIN ORCHESTRATION
 # -----------------------------
-if __name__ == "__main__":
-    DOCUMENT_ID = "c7d8e47c243d8bf4bb749415"
+def main():
 
     # Step 1: Try to fetch & archive
-    OFFLINE_MODE = False  # set to True to skip API fetch while developing
 
     if not OFFLINE_MODE:
         print("Attempting API fetch from Onshape…")
@@ -108,10 +157,12 @@ if __name__ == "__main__":
 
     print(f"Using log file: {last_good_log}")
 
-    # Step 3: Process as usual
+    # Step 3: Load versions and archive
     all_versions = get_all_versions(last_good_log)
-    latest_version = get_latest_version(all_versions)
+    archive_versions_to_local_snapshots(all_versions)
 
-    print("Loaded", len(all_versions), "versions")
-    print("Latest version:", latest_version.get("name"))
-
+# -----------------------------
+# ENTRY POINT
+# -----------------------------
+if __name__ == "__main__":
+    main()

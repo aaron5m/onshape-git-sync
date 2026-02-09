@@ -2,7 +2,7 @@ from pathlib import Path
 import json
 
 # -----------------------------
-# Step 1: Fetch / read all versions
+# Fetch / read all versions
 # -----------------------------
 def get_all_versions(json_input):
     """
@@ -27,7 +27,7 @@ def get_all_versions(json_input):
     return versions
 
 # -----------------------------
-# Step 2: Pick the latest version
+# Pick the latest version
 # -----------------------------
 def get_latest_version(versions):
     """
@@ -35,3 +35,4 @@ def get_latest_version(versions):
     """
     latest = max(versions, key=lambda v: v.get("createdAt", ""))
     return latest
+
