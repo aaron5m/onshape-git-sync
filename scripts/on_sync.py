@@ -9,7 +9,7 @@ import requests
 LOG_DIR = Path(__file__).resolve().parent.parent / "logs"
 SNAPSHOT_DIR = Path(__file__).resolve().parent.parent / "snapshots"
 DOCUMENT_ID = "c7d8e47c243d8bf4bb749415"
-OFFLINE_MODE = True
+OFFLINE_MODE = False
 
 # -----------------------------
 # Step 0: Read API keys
