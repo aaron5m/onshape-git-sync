@@ -3,21 +3,14 @@ import json
 from pathlib import Path
 from utils import *
 from datetime import datetime
+from fetch_elements import *
 import requests
 
 # CONFIGURATION
 LOG_DIR = Path(__file__).resolve().parent.parent / "logs"
 SNAPSHOT_DIR = Path(__file__).resolve().parent.parent / "snapshots"
 DOCUMENT_ID = "c7d8e47c243d8bf4bb749415"
-OFFLINE_MODE = False
-
-# -----------------------------
-# Step 0: Read API keys
-# -----------------------------
-def read_key(name):
-    """Read a secret from the keys folder."""
-    KEY_DIR = Path(__file__).resolve().parents[2] / "keys"
-    return (KEY_DIR / name).read_text().strip()
+OFFLINE_MODE = True
     
 # -----------------------------
 # Step 1a: Fetch versions from API
@@ -160,6 +153,9 @@ def main():
     # Step 3: Load versions and archive
     all_versions = get_all_versions(last_good_log)
     archive_versions_to_local_snapshots(all_versions)
+    for version in all_versions:
+        fetch_and_archive_elements_for_version(DOCUMENT_ID, version, SNAPSHOT_DIR)
+
 
 # -----------------------------
 # ENTRY POINT

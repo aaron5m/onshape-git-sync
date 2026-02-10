@@ -2,6 +2,14 @@ from pathlib import Path
 import json
 
 # -----------------------------
+# Read API keys
+# -----------------------------
+def read_key(name):
+    """Read a secret from the keys folder."""
+    KEY_DIR = Path(__file__).resolve().parents[2] / "keys"
+    return (KEY_DIR / name).read_text().strip()
+
+# -----------------------------
 # Fetch / read all versions
 # -----------------------------
 def get_all_versions(json_input):
