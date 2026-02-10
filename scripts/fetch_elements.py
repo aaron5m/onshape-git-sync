@@ -1,9 +1,11 @@
 import os
+from pathlib import Path
 import json
 import requests
 from utils import *
+from config import *
 
-def fetch_and_archive_elements_for_version(document_id, version, snapshot_root):
+def fetch_and_archive_elements_for_version(document_id, version):
     """
     Fetch elements for a specific Onshape version and archive them as elements.json
     inside the version's snapshot folder.
@@ -16,10 +18,8 @@ def fetch_and_archive_elements_for_version(document_id, version, snapshot_root):
         return
 
     # Convert createdAt to snapshot folder name
-    from datetime import datetime
-    dt = datetime.fromisoformat(created_at.replace("Z", "+00:00"))
-    snapshot_folder = dt.strftime("%Y%m%d_%H%M%S")
-    snapshot_path = os.path.join(snapshot_root, snapshot_folder)
+    timestamp_folder_name = get_version_timestamp_folder_name(version)
+    snapshot_path = os.path.join(SNAPSHOT_DIR, timestamp_folder_name)
 
     # Ensure snapshot folder exists
     if not os.path.exists(snapshot_path):

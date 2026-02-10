@@ -1,12 +1,13 @@
 from pathlib import Path
+from datetime import datetime
 import json
+from config import *
 
 # -----------------------------
 # Read API keys
 # -----------------------------
 def read_key(name):
     """Read a secret from the keys folder."""
-    KEY_DIR = Path(__file__).resolve().parents[2] / "keys"
     return (KEY_DIR / name).read_text().strip()
 
 # -----------------------------
@@ -44,3 +45,22 @@ def get_latest_version(versions):
     latest = max(versions, key=lambda v: v.get("createdAt", ""))
     return latest
 
+# -----
+# Get timestamp from version to create snapshot folder
+# -----
+def get_version_timestamp_folder_name(version):
+    # Extract Onshape's version creation timestamp
+    created_at = version.get("createdAt")
+    if not created_at:
+        print(f"Warning: version {version.get('name')} missing 'createdAt'; cannot generate images")
+        return None
+
+    # Convert ISO 8601 timestamp to folder-friendly format
+    try:
+        dt = datetime.fromisoformat(created_at.replace("Z", "+00:00"))  # handle UTC Z
+        timestamp_folder_name = dt.strftime("%Y%m%d_%H%M%S")
+        return timestamp_folder_name
+        
+    except Exception as e:
+        print(f"Error parsing timestamp for version {version.get('name')}: {e}")
+        return None
