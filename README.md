@@ -4,6 +4,21 @@ A small-scale automation project demonstrating version tracking and workflow aut
 
 ---
 
+## Current Functionality
+
+This project now implements a full Onshape-to-local archive pipeline:
+
+- Fetches all versions of a specified Onshape document via the API
+- Archives each API response in `logs/<timestamp>.json`
+- Creates timestamped snapshot folders for each version in `snapshots/`
+- Writes version information and metadata into `snapshots/<version_timestamp>/snapshot.json`
+- Discovers assembly elements for each version and stores them in `snapshots/<version_timestamp>/elements.json`
+- Generates shaded images for each assembly element and stores them in `snapshots/<version_timestamp>/img/`
+- Supports offline mode, allowing the pipeline to continue from the last successful log
+- Designed to be idempotent, deterministic, and observable for DevOps-style workflows
+
+---
+
 ## Project Overview
 
 This project automates the synchronization of **official Onshape document versions** to a GitHub repository. It is designed to showcase:
@@ -71,8 +86,10 @@ The repository serves as a single source of truth for exported Onshape assets, w
 ```
 onshape-git-sync/
 ├── exports/ # Exported STEP, STL, PDF files from Onshape
+├── snapshots/ # Version metadata and screen-grabs from OnShape saved versions
 ├── scripts/ # Automation scripts (Python)
-├── cron.log # Log file for cron job runs
+├── logs/ # Log file for cron job runs
+├── CHANGELOG.md
 └── README.md
 ```
 
