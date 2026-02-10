@@ -4,13 +4,6 @@ import json
 from config import *
 
 # -----------------------------
-# Read API keys
-# -----------------------------
-def read_key(name):
-    """Read a secret from the keys folder."""
-    return (KEY_DIR / name).read_text().strip()
-
-# -----------------------------
 # Fetch / read all versions
 # -----------------------------
 def get_all_versions(json_input):

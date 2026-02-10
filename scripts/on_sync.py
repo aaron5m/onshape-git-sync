@@ -19,10 +19,7 @@ def fetch_versions_from_api(document_id):
     Fetch all versions for a given Onshape document and workspace using the API.
     Returns JSON as a Python object.
     """
-    API_KEY = read_key("onshape-api-access.txt")
-    API_SECRET = read_key("onshape-api-secret.txt")
 
-    # Example endpoint (adjust to real Onshape API docs):
     url = f"https://cad.onshape.com/api/v10/documents/d/{document_id}/versions?offset=0&limit=0"
 
     # Basic authentication with key/secret

@@ -34,10 +34,6 @@ def fetch_and_archive_elements_for_version(document_id, version):
         print(f"elements.json already exists for version {version.get('name')}; skipping")
         return
 
-    # Read API credentials
-    API_KEY = read_key("onshape-api-access.txt")
-    API_SECRET = read_key("onshape-api-secret.txt")
-
     url = (
         f"https://cad.onshape.com/api/v10/documents/"
         f"d/{document_id}/v/{version_id}/elements"

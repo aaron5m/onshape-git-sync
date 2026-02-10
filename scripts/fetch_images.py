@@ -70,10 +70,6 @@ def generate_assembly_images(document_id, version, element_id):
 
     # Ensure the folder exists
     os.makedirs(img_folder, exist_ok=True)
-    
-    # Prepeare the API Call
-    API_KEY = read_key("onshape-api-access.txt")
-    API_SECRET = read_key("onshape-api-secret.txt")
 
     url = f"https://cad.onshape.com/api/v10/assemblies/d/{document_id}/v/{version_id}/e/{element_id}/shadedviews"
     
