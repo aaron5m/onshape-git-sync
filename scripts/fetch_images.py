@@ -53,8 +53,7 @@ def generate_assembly_image(document_id, version, element_id):
     and saves it to a dedicated 'img' folder inside the element's snapshot directory.
     """
     # Get version id
-    
-    version_id = version["id"]
+    version_id = version.get("id")
     
     # Extract Onshape's version creation timestamp
     created_at = version.get("createdAt")
@@ -147,7 +146,7 @@ def capture_assembly_images_for_version(document_id, version):
     """
     For the given version, fetch the assemblies and capture an image for each.
     """
-    # Get version ID
+    # Get version id
     version_id = version.get("id")
 
     if not version_id:
@@ -164,7 +163,7 @@ def capture_assembly_images_for_version(document_id, version):
         # Now generate images for each assembly
         for assembly in assemblies:
             print(f"Generating image for assembly: {assembly['name']}")
-            generate_assembly_image(document_id, assembly['id'])
+            generate_assembly_image(document_id, version, assembly['id'])
 
     except Exception as e:
         print(f"Error processing version {version.get('name')}: {e}")
