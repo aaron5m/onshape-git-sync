@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Load environment variable
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Switch into project folder for git
 cd "$SCRIPT_DIR" || exit 1
@@ -12,7 +12,7 @@ if [ -z "$GITHUB_TOKEN" ]; then
 fi
     
 # Get the url to push to
-ORIGIN=$(git remote get-url origin)
+ORIGIN=$(git config --get remote.origin.url)
 PUSH_URL="https://$GITHUB_TOKEN@${ORIGIN#https://}"
 
 # Add and commit
@@ -20,5 +20,4 @@ git add .
 git commit -m "Update snapshots/"
 
 # Push using token
-git push "$PUSH_URL" docker-v4
-
+git push "$PUSH_URL" docker-v5

@@ -35,14 +35,14 @@ else
 fi
 
 # Prepare a cron job that will run every hour
-CRON_JOB="0/3 * * * * $DOCKER_PATH run --rm \
+CRON_JOB="0 * * * * $DOCKER_PATH run --rm \
  --env-file $SCRIPT_DIR/onsync.env \
  -v $SCRIPT_DIR/logs:/app/logs \
  -v $SCRIPT_DIR/snapshots:/app/snapshots \
- onshape-git-sync && $SCRIPT_DIR/git_push.sh"
+ onshape-git-sync"
 
 # Add that cron job (if it does not already exist)
-crontab -l 2>/dev/null | grep -F "$DOCKER_PATH" > /dev/null
+crontab -l 2>/dev/null | grep -F "$SCRIPT_PATH" > /dev/null
 if [ $? -ne 0 ]; then
     # Add it if missing
     (crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
@@ -63,6 +63,3 @@ echo "$DOCKER_PATH"
  -v "$(pwd)/logs:/app/logs" \
  -v "$(pwd)/snapshots:/app/snapshots" \
  onshape-git-sync
- 
- # Push to git
- bash "$SCRIPT_DIR/git_push.sh"
