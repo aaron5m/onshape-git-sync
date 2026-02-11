@@ -36,7 +36,7 @@ fi
 
 # Prepare a cron job that will run every hour
 CRON_JOB="0 * * * * $DOCKER_PATH run --rm \
- --env-file $SCRIPT_DIR/docker.env \
+ --env-file $SCRIPT_DIR/onsync.env \
  -v $SCRIPT_DIR/logs:/app/logs \
  -v $SCRIPT_DIR/snapshots:/app/snapshots \
  onshape-git-sync"
@@ -59,7 +59,7 @@ echo "$DOCKER_PATH"
 
 # Run docker
 "$DOCKER_PATH" run --rm \
- --env-file docker.env \
+ --env-file onsync.env \
  -v "$(pwd)/logs:/app/logs" \
  -v "$(pwd)/snapshots:/app/snapshots" \
  onshape-git-sync
