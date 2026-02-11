@@ -4,13 +4,6 @@ import json
 from config import *
 
 # -----------------------------
-# Read API keys
-# -----------------------------
-def read_key(name):
-    """Read a secret from the keys folder."""
-    return (KEY_DIR / name).read_text().strip()
-
-# -----------------------------
 # Fetch / read all versions
 # -----------------------------
 def get_all_versions(json_input):
@@ -64,3 +57,12 @@ def get_version_timestamp_folder_name(version):
     except Exception as e:
         print(f"Error parsing timestamp for version {version.get('name')}: {e}")
         return None
+
+# -----
+# Count subdirectories (for comparing if there has been a change)
+# -----
+def count_subdirectories(path):
+    return sum(
+        os.path.isdir(os.path.join(path, entry))
+        for entry in os.listdir(path)
+    )

@@ -11,9 +11,9 @@ SNAPSHOT_DIR.mkdir(exist_ok=True)  # ensure folder exists
 # Toggle mode for debugging
 OFFLINE_MODE = False
 
-# Change to your Document ID
-DOCUMENT_ID = "c7d8e47c243d8bf4bb749415"
+# Read Document ID, and API keys from environment (or fallback up to keys folder)
+DOCUMENT_ID = os.environ.get("ONSHAPE_DOC_ID").strip()
+API_KEY = os.environ.get("ONSHAPE_API_KEY").strip()
+API_SECRET = os.environ.get("ONSHAPE_API_SECRET").strip()
 
-# Change the path to your keys
-KEY_DIR = Path(__file__).resolve().parents[2] / "keys"
 

@@ -9,6 +9,7 @@ from datetime import datetime
 from utils import *
 from fetch_elements import *
 from fetch_images import *
+from publish_snapshots import *
 from config import *
     
 # -----------------------------
@@ -19,10 +20,7 @@ def fetch_versions_from_api(document_id):
     Fetch all versions for a given Onshape document and workspace using the API.
     Returns JSON as a Python object.
     """
-    API_KEY = read_key("onshape-api-access.txt")
-    API_SECRET = read_key("onshape-api-secret.txt")
 
-    # Example endpoint (adjust to real Onshape API docs):
     url = f"https://cad.onshape.com/api/v10/documents/d/{document_id}/versions?offset=0&limit=0"
 
     # Basic authentication with key/secret
@@ -88,7 +86,7 @@ def archive_versions_to_local_json_snapshots(all_versions):
       - Save snapshot.json inside the folder with the full version data
     """
     os.makedirs(SNAPSHOT_DIR, exist_ok=True)
-
+    
     for version in all_versions:
     
         # Build folder path
@@ -105,7 +103,7 @@ def archive_versions_to_local_json_snapshots(all_versions):
         else:
             print(f"Snapshot {timestamp_folder_name} already exists as version: {version.get('name')}")
             pass
-
+            
 
 # -----------------------------
 # MAIN ORCHESTRATION
@@ -136,11 +134,15 @@ def main():
 
     # Step 3: Load versions and archive
     all_versions = get_all_versions(last_good_log)
+    count_snapshots_before = count_subdirectories(SNAPSHOT_DIR)
     archive_versions_to_local_json_snapshots(all_versions)
     for version in all_versions:
         fetch_and_archive_elements_for_version(DOCUMENT_ID, version)
         capture_all_assemblies_images_for_version(DOCUMENT_ID, version)
 
+    #Step 4: Update the snapshots readme
+    if count_snapshots_before != count_subdirectories(SNAPSHOT_DIR):
+        update_snapshots_readme()
 
 # -----------------------------
 # ENTRY POINT

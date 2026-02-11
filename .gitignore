@@ -5,4 +5,7 @@ logs/*
 !logs/
 tmp/
 .DS_Store
+docker.env
+onsync.env
+*.env
 
