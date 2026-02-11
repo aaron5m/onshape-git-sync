@@ -5,8 +5,8 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 DOCKER_PATH="$(which docker)"
 
 # Make sure scripts can execute
-chmod +x "$SCRIPT_PATH/start_onsync.sh"
-chmod +x "$SCRIPT_PATH/git_push.sh"
+chmod +x "$SCRIPT_DIR/start_onsync.sh"
+chmod +x "$SCRIPT_DIR/git_push.sh"
 
 # Check if script is run by cron
 if ! command -v crontab &>/dev/null; then
