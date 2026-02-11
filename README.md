@@ -1,11 +1,5 @@
 # onshape-git-sync
 
-A small-scale automation project demonstrating version tracking and workflow automation for Onshape CAD documents. This repository mirrors official Onshape versions into GitHub, providing a clear history of design milestones and automated management of exported files.
-
----
-
-## Project Overview
-
 This project automates the synchronization of **official Onshape document versions** to a GitHub repository. It is designed to showcase:
 
 - Versioned tracking of CAD documents.
@@ -13,7 +7,8 @@ This project automates the synchronization of **official Onshape document versio
 - Automated export and commit processes.
 - Clear documentation of changes over time.
 
-The repository serves as a single source of truth for exported Onshape assets, with each milestone captured and labeled programmatically.
+Using this repository in tandem with your Onshape progress yields an automatically updated journal of snapshots for you or anyone on your team to see at:  
+[https://github.com/your-username/onshape-git-sync/tree/main/snapshots](https://github.com/aaron5m/onshape-git-sync/tree/main/snapshots)
 
 ---
 
