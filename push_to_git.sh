@@ -20,5 +20,5 @@ git add .
 git commit -m "Update snapshots/"
 
 # Push using token
-#git push https://$GITHUB_TOKEN@github.com/username/repo.git main
+git push https://$GITHUB_TOKEN@github.com/username/repo.git docker-v4
 
