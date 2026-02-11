@@ -4,21 +4,6 @@ A small-scale automation project demonstrating version tracking and workflow aut
 
 ---
 
-## Current Functionality
-
-This project now implements a full Onshape-to-local archive pipeline:
-
-- Fetches all versions of a specified Onshape document via the API
-- Archives each API response in `logs/<timestamp>.json`
-- Creates timestamped snapshot folders for each version in `snapshots/`
-- Writes version information and metadata into `snapshots/<version_timestamp>/snapshot.json`
-- Discovers assembly elements for each version and stores them in `snapshots/<version_timestamp>/elements.json`
-- Generates shaded images for each assembly element and stores them in `snapshots/<version_timestamp>/img/`
-- Supports offline mode, allowing the pipeline to continue from the last successful log
-- Designed to be idempotent, deterministic, and observable for DevOps-style workflows
-
----
-
 ## Project Overview
 
 This project automates the synchronization of **official Onshape document versions** to a GitHub repository. It is designed to showcase:
@@ -29,6 +14,68 @@ This project automates the synchronization of **official Onshape document versio
 - Clear documentation of changes over time.
 
 The repository serves as a single source of truth for exported Onshape assets, with each milestone captured and labeled programmatically.
+
+---
+
+## Installation & Usage
+
+Follow these steps to set up and run the Onshape snapshot automation:
+
+0. **You will need**
+  - [Docker](https://www.docker.com/get-started/) 
+  - an onshape document id (the **alphanumeric** string, no slashes, in the url after document/ when you open your document)
+  - an onshape API key and Secret key [Onshape API Keys](https://onshape-public.github.io/docs/auth/apikeys/)
+  - a github classic personal access token [Github Classic Personal Access Token](https://medium.com/@mbohlip/how-to-generate-a-classic-personal-access-token-in-github-04985b5432c7) 
+
+1. **Fork the repository in Github**   
+then go to your own repo and continue https://github.com/your-username/onshape-git-sync
+
+2. **Clone YOUR repository to your Local Machine or EC2
+```   
+git clone https://github.com/your-username/onshape-git-sync.git
+cd onshape-git-sync
+```
+
+3. **Hide your environment variables from git**    
+Rename your onsync.env.sample file to onsync.env
+```
+cp onsync.env.sample onsync.env
+rm onsync.env.sample
+```
+
+4. **Set your environment variables**  
+Edit your onsync.env file to include your secret information (not tracked by git)
+```
+ONSHAPE_DOC_ID=yourOnshapeDocId
+ONSHAPE_API_KEY=yourAPIkey
+ONSHAPE_SECRET_KEY=yourSecretKey
+GITHUB_TOKEN=yourGithubToken
+```
+
+5. **Run the setup script**  
+Execute the main shell script to build the Docker container, run it for the first time, and schedule hourly updates via cron:
+```
+bash start_onsync.sh
+```
+
+6. **See your utomated snapshots**  
+  - The script will monitor your Onshape project for new official versions every hour.  
+  - Each version is saved in the `snapshots` folder with metadata, elements, and images.  
+  - Any changes are automatically pushed to your GitHub repository.
+    - You, or anyone, can see them at https://github.com/your-username/onshape-git-sync/tree/main/snapshots
+    - You can write an introduction above the first line in snapshots/README.md and the updater will leave your introduction alone.
+
+---
+
+## Drawbacks and Decisions
+
+- **Hourly polling vs. webhooks:**  
+  Currently, the pipeline uses a cron job to call the Onshape API every hour. While this approach is simple and aligns with DevOps-style CI/CD automation, it is not the most API-efficient method. Frequent polling can consume unnecessary API calls, especially for projects that update infrequently.
+
+- **Future improvements:**  
+  A more efficient approach would leverage Onshape webhooks to trigger updates only when new versions are created. This would reduce API usage and provide near real-time snapshots.  
+- **Decision rationale:**  
+  Using a cron-based workflow allows the project to demonstrate containerization, automated scheduling, and Git integration—core DevOps practices—while still providing a fully functional, automated snapshot pipeline. Webhook integration can be implemented in a future iteration without impacting the current functionality.
 
 ---
 
@@ -71,7 +118,7 @@ The repository serves as a single source of truth for exported Onshape assets, w
 
 ## Planned Workflow
 
-1. The cron job runs every 20 minutes on the EC2 instance.
+1. The cron job runs every hour on Local Machine or EC2 instance.
 2. The script queries the Onshape API for the latest “official” version.
 3. If a new version is detected:
    - Files are exported from Onshape.
@@ -88,10 +135,31 @@ onshape-git-sync/
 ├── exports/ # Exported STEP, STL, PDF files from Onshape
 ├── snapshots/ # Version metadata and screen-grabs from OnShape saved versions
 ├── scripts/ # Automation scripts (Python)
-├── logs/ # Log file for cron job runs
+├── logs/ # Log files for cron job runs
 ├── CHANGELOG.md
 └── README.md
 ```
+
+---
+
+## Current Functionality
+
+This project now implements a full Onshape-to-local archive and automation pipeline:
+
+- Fetches all versions of a specified Onshape document via the Onshape API
+- Archives each API response in `logs/<timestamp>.json`
+- Creates timestamped snapshot folders for each version in `snapshots/`
+- Writes version information and metadata into `snapshots/<version_timestamp>/snapshot.json`
+- Discovers assembly elements for each version and stores them in `snapshots/<version_timestamp>/elements.json`
+- Generates shaded images for each assembly element and stores them in `snapshots/<version_timestamp>/img/`
+- Writes a human-readable Markdown summary (`README.md`) into snapshots folder, including the name, description, and images of the version
+- Supports offline mode, allowing the pipeline to continue from the last successful log
+- Designed to be idempotent, deterministic, and observable for DevOps-style workflows
+- Fully containerized with Docker for consistent execution across Linux and macOS
+- Includes `start_onsync.sh` to build and run the Docker container and initialize the pipeline
+- Automated cron job runs hourly to monitor the Onshape project for new official versions
+- Automatic Git integration pushes new snapshots and updates to the GitHub repository whenever a new version is detected
+
 
 ---
 
@@ -105,6 +173,9 @@ onshape-git-sync/
 
 ## References
 
+- [Docker](https://www.docker.com/get-started/) 
 - [Onshape REST API Documentation](https://onshape-public.github.io/docs/)
+- [Onshape API Keys](https://onshape-public.github.io/docs/auth/apikeys/)
 - [GitHub Documentation](https://docs.github.com/en)
-- [GitPython Documentation](https://gitpython.readthedocs.io/en/stable/)
+- [Github Classic Personal Access Token](https://medium.com/@mbohlip/how-to-generate-a-classic-personal-access-token-in-github-04985b5432c7) 
+

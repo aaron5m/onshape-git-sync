@@ -20,4 +20,4 @@ git add .
 git commit -m "Update snapshots/"
 
 # Push using token
-git push "$PUSH_URL" docker-v5
+git push "$PUSH_URL" main

@@ -1,3 +1,6 @@
+# INTRO *change this section for your own project*
+*everything up to the first three dashed lines will always be shown*
+
 # OnShape Pyramid Toy for Child Learning
 
 Many of us learn in school that the volume of a pyramid is equal to the area of its base multiplied by its height divided by three.

@@ -1,5 +1,40 @@
 # CHANGELOG
 
+## Onshape Git Sync v1 - 2026-02-10
+
+# Pull Request - Containerize Onshape Snapshot Workflow with Automated Git Push via Cron
+
+This PR introduces full containerization and automation for the Onshape project snapshot workflow, making it easily deployable and maintainable across Linux and macOS environments. Key updates include:
+
+## What’s new:
+
+1. **Docker containerization**
+   - All Python scripts and dependencies are now encapsulated in a Docker image.
+   - Ensures consistent execution environment across machines.
+
+2. **Automated workflow via shell scripts and cron**
+   - `start_onsync.sh` initializes the Docker build and runs the container.
+   - Cron job added to execute the container hourly, continuously monitoring the Onshape project for new official versions.
+
+3. **Automatic Git integration**
+   - Added a shell script to push changes to the GitHub repository whenever a new Onshape version is detected.
+   - Each official version results in a snapshot of the project, including metadata and assembly images, which is stored in the repository.
+
+4. **Generated Markdown for snapshots**
+   - Python script now writes a `README.md` (or markdown file) into the snapshots folder.
+   - Contains the name, description, and images of each Onshape version for easy human viewing.
+
+## Impact / Benefits:
+- Fully automated, minimal-maintenance workflow for tracking Onshape project versions.
+- Easy deployment on any system with Docker.
+- Demonstrates hands-on experience with DevOps practices: containerization, automation with cron, and CI-like Git integration.
+
+## Next steps / considerations:
+- Merge into `main` to enable automated snapshot updates across environments.
+- Potential future enhancement: add notifications or logging for snapshot updates.
+
+
+
 ## [Unreleased] - 2026-02-10
 
 ## Pull Request: Initial Onshape Version Sync, Snapshotting, and Assembly Imaging

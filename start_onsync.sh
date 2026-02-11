@@ -35,7 +35,7 @@ else
 fi
 
 # Prepare a cron job that will run every hour
-CRON_JOB="0/3 * * * * $DOCKER_PATH run --rm \
+CRON_JOB="0 * * * * $DOCKER_PATH run --rm \
  --env-file $SCRIPT_DIR/onsync.env \
  -v $SCRIPT_DIR/logs:/app/logs \
  -v $SCRIPT_DIR/snapshots:/app/snapshots \
