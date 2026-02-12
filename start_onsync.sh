@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Any argument means we are not pushing to git
+NO_PUSH=$1
+
 # Get the current dir and path to script, and path to docker
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 DOCKER_PATH="$(which docker)"
@@ -65,4 +68,6 @@ echo "$DOCKER_PATH"
  onshape-git-sync
  
  # Push to git
- bash "$SCRIPT_DIR/git_push.sh"
+ if [ -z "$NO_PUSH" ]; then
+    bash "$SCRIPT_DIR/git_push.sh"
+fi

@@ -11,6 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy scripts directory into the container
 COPY scripts/ scripts/
+COPY onsync.env onsync.env
 
 # Move into scripts directory
 WORKDIR /app/scripts
