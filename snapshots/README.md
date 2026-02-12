@@ -16,6 +16,19 @@ But the joy is in discovering where that ratio comes from, and this toy is meant
 
 ---
 
+### V9 Add Engraven Cube Assembly View  
+
+### 2026-02-12 09:55:23  
+
+![67cc15177a87419bc84dbe56_view1.png](20260212_095523/img/67cc15177a87419bc84dbe56_view1.png)
+
+![739ea11f0ed7568f1b980839_view1.png](20260212_095523/img/739ea11f0ed7568f1b980839_view1.png)
+
+![cbe243f7aa596d9ad510fa25_view1.png](20260212_095523/img/cbe243f7aa596d9ad510fa25_view1.png)
+
+
+---
+
 ### V8 Engrave Cube  
 
 ### 2026-02-12 08:59:20  

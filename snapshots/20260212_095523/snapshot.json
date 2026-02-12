@@ -1,0 +1,27 @@
+{
+  "metadataWorkspaceId": "3dce0f4131de8be41f0b550c",
+  "purpose": 0,
+  "parent": "98bf44bd1a6e0e74a78a804c",
+  "type": "version",
+  "creator": {
+    "jsonType": "user-summary",
+    "state": 1,
+    "isOnshapeSupport": false,
+    "image": "https://cad.onshape.com/api/profile/1fa0b9454d29cb85b8355c32a15d98f1a4d2968c0ba2e0c8e3d22b87f7c5d70f.png",
+    "name": "P Aaron Mitchell",
+    "id": "6989543a9b84c0683fec9d7c",
+    "href": "https://cad.onshape.com/api/v10/users/6989543a9b84c0683fec9d7c"
+  },
+  "lastModifier": null,
+  "description": "Combining: the hint on the engraven cube, with the actual construction of the large pyramid, yields two equations with two unknowns, which can then solved algebraically/symbolically to yield the one-over-three ratio.",
+  "modifiedAt": "2026-02-12T09:55:23.211+00:00",
+  "thumbnail": null,
+  "documentId": "c7d8e47c243d8bf4bb749415",
+  "createdAt": "2026-02-12T09:55:23.047+00:00",
+  "microversion": "5c367bd2c050cf1226cbd008",
+  "parents": null,
+  "overrideDate": null,
+  "name": "V9 Add Engraven Cube Assembly View",
+  "id": "9f25ba923f4bfbec60dcf405",
+  "href": null
+}
