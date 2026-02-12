@@ -6,9 +6,6 @@ WORKDIR /app
 # Copy dependencies list
 COPY requirements.txt .
 
-# Copy environment
-COPY onsync.env .
-
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
