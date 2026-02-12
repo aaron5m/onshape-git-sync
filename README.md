@@ -5,14 +5,14 @@
 
            .                            __..--"""""""""""::|     #####################
           /=\\       A          __..--""          _..--""  |     # ################# #
-         /===\ \   < + >      .:________________.:| |      |     # # Github Repo   # #
-        /=====\' \   v        |       ______    ||| |    ()|     # #   README      # #
-       /=======\'' \          | __===::::::===__||| |()    |     # #               # #
-      /=========\ ' '\        ||\_______________||| |      |     # #  |   /\       # #
-     /===========\' '' \      |  | '.'..''.'|    || |      |     # #  |  /  \      # #
-    /=============\' ' ' \    |  |/""""""""";.   || |     .'     # #  | /____\     # #
-   /===============\  ' ' /   |  :   x       '.  || |   .'       # #  2026 02 09   # #
-  /=================\   '/    |  :   x:       :  || | .'         # #  |            # #
+         /===\ \   < + >      .:________________.:| |      |     # # Github/u/repo # #
+        /=====\' \   v        |       ______    ||| |    ()|     # #  /snapshots/  # #
+       /=======\'' \          | __===::::::===__||| |()    |     # #     README.md # #
+      /=========\ ' '\        ||\_______________||| |      |     # #  |            # #
+     /===========\' '' \      |  | '.'..''.'|    || |      |     # #  |   /\       # #
+    /=============\' ' ' \    |  |/""""""""";.   || |     .'     # #  |  /  \      # #
+   /===============\  ' ' /   |  :   x       '.  || |   .'       # #  | /____\     # #
+  /=================\   '/    |  :   x:       :  || | .'         # #  2026 02 09   # #
  /===================\' /     | ."   x:       ". || :'           # ################# #
 /=====================\/      |_:______________:_|:'             #####################
 ```
@@ -25,8 +25,14 @@ This project automates the synchronization of **official Onshape document versio
 - Automated export and commit processes.
 - Clear documentation of changes over time.
 
-Using this repository in tandem with your Onshape progress yields an automatically updated journal of snapshots for you or anyone on your team to see at:  
+Using this repository in tandem with your Onshape progress yields an 🚀 **automatically updated journal of snapshots** for you or anyone on your team to see at:  
 [https://github.com/your-username/onshape-git-sync/tree/main/snapshots](https://github.com/aaron5m/onshape-git-sync/tree/main/snapshots)
+
+---
+
+# STATUS ✅
+
+As of 2026 Feb 12 the **updates to this repo have been automated through an EC2 instance with AWS Linux 2023** (a modest simulation of a CI/CD pipeline). The repo has now been tested and verified to run on MacOS Sequoia and AWS Linux 2023. Follow the instructions below to use it yourself.
 
 ---
 
