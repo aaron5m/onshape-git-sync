@@ -65,3 +65,4 @@ def count_files(dir_path):
     total_files = 0
     for root, dirs, files in os.walk(dir_path):
         total_files += len(files)
+    return total_files

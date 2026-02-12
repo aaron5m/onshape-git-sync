@@ -8,6 +8,7 @@ from datetime import datetime
 from utils import *
 from config import *
 
+
 def update_snapshots_readme():
 
     # Initialize appropriate README for snapshots
@@ -31,7 +32,7 @@ def update_snapshots_readme():
         preserved = ""
     readme_lines = []
     readme_lines.append(f"{preserved}")
-    readme_lines.append(f"\n---\n\n*Everything below this line will be overwritten/rewritten with next snapshot.*\n\n---\n")
+    readme_lines.append(f"---\n\n*Everything below this line will be overwritten/rewritten with next snapshot.*\n\n---\n")
     
 
     # Iterate through each identifier folder
@@ -66,6 +67,7 @@ def update_snapshots_readme():
             for img_file in sorted(os.listdir(img_folder)):
                 if img_file.lower().endswith((".png", ".jpg", ".jpeg", ".gif")):
                     img_path = os.path.relpath(os.path.join(img_folder, img_file), SNAPSHOT_DIR)
+
                     readme_lines.append(f"![{img_file}]({img_path})\n")
         else:
             readme_lines.append("_No images found_\n")
@@ -77,4 +79,5 @@ def update_snapshots_readme():
         f.write("\n".join(readme_lines))
 
     print(f"README.md generated in /snapshots")
+
 
