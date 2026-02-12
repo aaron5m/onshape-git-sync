@@ -7,9 +7,28 @@ Many of us learn in school that the volume of a pyramid is equal to the area of 
 
 But the joy is in discovering where that ratio comes from, and this toy is meant to prove that ratio (a third, as opposed to a half or something else).
 
+
 ---
 
 *Everything below this line will be overwritten/rewritten with next snapshot.*
+
+---
+
+### V6 Full Pyramid Assembly  
+
+### 2026-02-12 03:34:27  
+
+![67cc15177a87419bc84dbe56_view1.png](20260212_033427/img/67cc15177a87419bc84dbe56_view1.png)
+
+
+---
+
+### V5 Skew Pyramid Created  
+
+### 2026-02-12 03:21:55  
+
+![67cc15177a87419bc84dbe56_view1.png](20260212_032155/img/67cc15177a87419bc84dbe56_view1.png)
+
 
 ---
 
