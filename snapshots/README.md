@@ -16,6 +16,17 @@ But the joy is in discovering where that ratio comes from, and this toy is meant
 
 ---
 
+### V8 Engrave Cube  
+
+### 2026-02-12 08:59:20  
+
+![67cc15177a87419bc84dbe56_view1.png](20260212_085920/img/67cc15177a87419bc84dbe56_view1.png)
+
+![739ea11f0ed7568f1b980839_view1.png](20260212_085920/img/739ea11f0ed7568f1b980839_view1.png)
+
+
+---
+
 ### V7 Added Small Shapes Assembly  
 
 ### 2026-02-12 04:06:35  
