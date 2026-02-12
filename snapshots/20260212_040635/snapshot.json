@@ -1,0 +1,27 @@
+{
+  "metadataWorkspaceId": "43c379ab128ed20187e3b6cc",
+  "purpose": 0,
+  "parent": "6ec75d635687e52ae9cd193c",
+  "type": "version",
+  "creator": {
+    "jsonType": "user-summary",
+    "state": 1,
+    "isOnshapeSupport": false,
+    "image": "https://cad.onshape.com/api/profile/1fa0b9454d29cb85b8355c32a15d98f1a4d2968c0ba2e0c8e3d22b87f7c5d70f.png",
+    "name": "P Aaron Mitchell",
+    "id": "6989543a9b84c0683fec9d7c",
+    "href": "https://cad.onshape.com/api/v10/users/6989543a9b84c0683fec9d7c"
+  },
+  "lastModifier": null,
+  "description": "The same shapes the form the large pyramid also form two smaller pyramids and two cubes. The base, width, and height of these two pyramids and two cubes are exactly one-half the base, width, and height of the large pyramid.",
+  "thumbnail": null,
+  "createdAt": "2026-02-12T04:06:35.160+00:00",
+  "modifiedAt": "2026-02-12T04:06:35.332+00:00",
+  "microversion": "f6e8c9ea3078c5d2c3cfe224",
+  "documentId": "c7d8e47c243d8bf4bb749415",
+  "parents": null,
+  "overrideDate": null,
+  "name": "V7 Added Small Shapes Assembly",
+  "id": "10255b0436f85491d552fd98",
+  "href": null
+}
