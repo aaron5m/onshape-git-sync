@@ -134,14 +134,14 @@ def main():
 
     # Step 3: Load versions and archive
     all_versions = get_all_versions(last_good_log)
-    count_snapshots_before = count_subdirectories(SNAPSHOT_DIR)
+    count_snapshots_before = count_files(SNAPSHOT_DIR)
     archive_versions_to_local_json_snapshots(all_versions)
     for version in all_versions:
         fetch_and_archive_elements_for_version(DOCUMENT_ID, version)
         capture_all_assemblies_images_for_version(DOCUMENT_ID, version)
 
     #Step 4: Update the snapshots readme
-    if count_snapshots_before != count_subdirectories(SNAPSHOT_DIR):
+    if count_snapshots_before != count_files(SNAPSHOT_DIR):
         update_snapshots_readme()
 
 # -----------------------------

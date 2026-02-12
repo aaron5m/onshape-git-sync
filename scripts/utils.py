@@ -61,8 +61,7 @@ def get_version_timestamp_folder_name(version):
 # -----
 # Count subdirectories (for comparing if there has been a change)
 # -----
-def count_subdirectories(path):
-    return sum(
-        os.path.isdir(os.path.join(path, entry))
-        for entry in os.listdir(path)
-    )
+def count_files(dir_path):
+    total_files = 0
+    for root, dirs, files in os.walk(dir_path):
+        total_files += len(files)
