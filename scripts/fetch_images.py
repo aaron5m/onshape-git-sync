@@ -63,14 +63,10 @@ def generate_assembly_images(document_id, version, element_id):
     version_folder = os.path.join(SNAPSHOT_DIR, timestamp_folder_name)
     img_folder = os.path.join(version_folder, "img")
     
-    # Idempotency: don't refetch if already archived
-    if os.path.exists(img_folder):
-        print(f"img folder already exists for version {version.get('name')}; skipping")
-        return
-
     # Ensure the folder exists
     os.makedirs(img_folder, exist_ok=True)
-
+    
+    # Prepare the API call
     url = f"https://cad.onshape.com/api/v10/assemblies/d/{document_id}/v/{version_id}/e/{element_id}/shadedviews"
     
     # Define parameters for the view (TRIMETRIC) and size (1024x1024)
